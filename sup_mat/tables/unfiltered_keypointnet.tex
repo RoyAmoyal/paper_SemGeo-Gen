@@ -1,0 +1,34 @@
+\begin{table}[h]
+  \caption{Evaluation of annotation quality on KeypointNet correspondences without filters. We report PCK at normalized distance thresholds of $5\%$, $10\%$, $15\%$, and $20\%$ of the object scale, computed per category. (on 100 objects)}
+  \label{tab:unfiltered}
+  % \resizebox{0.85\linewidth}{!}{ % <-- adjust 0.9 / 0.85 if needed
+
+  \centering
+  \begin{tabular}{lcccc}
+    \toprule
+    Category & PCK@0.05 $\uparrow$ & PCK@0.10 $\uparrow$ & PCK@0.15 $\uparrow$ & PCK@0.20 $\uparrow$ \\
+    \midrule
+    Airplane   & 0.73 & 0.90 & 0.95 & 0.98 \\
+    Bathtub    & 0.41 & 0.73 & 0.91 & 0.97 \\
+    Bed        & 0.45 & 0.71 & 0.84 & 0.90 \\
+    Bottle     & 0.65 & 0.83 & 0.92 & 0.98 \\
+    Car        & 0.75 & 0.94 & 0.97 & 0.99 \\
+    Chair      & 0.51 & 0.83 & 0.93 & 0.97 \\
+    Guitar     & 0.78 & 0.94 & 0.98 & 0.99 \\
+    Laptop     & 0.87 & 0.99 & 1.00 & 1.00 \\
+    Motorcycle & 0.69 & 0.88 & 0.95 & 0.99 \\
+    Mug        & 0.70 & 0.95 & 0.99 & 1.00 \\
+    Skateboard & 0.70 & 0.87 & 0.96 & 0.99 \\
+    Table      & 0.63 & 0.86 & 0.94 & 0.97 \\
+    Vessel     & 0.38 & 0.66 & 0.82 & 0.89 \\
+    Knife     & 0.52 & 0.68 & 0.82 & 0.91 \\ 
+    Helmet & 0.36 & 0.69 & 0.86 & 0.93 \\ 
+    Cap & 0.74 & 0.92 & 0.99 & 1.0\\
+    \midrule
+    Mean   & 0.62 & 0.84 & 0.93 & 0.97 \\
+    Median & 0.67 & 0.86 & 0.94 & 0.98 \\
+    \bottomrule
+  \end{tabular}
+  % }
+\end{table}
+ 

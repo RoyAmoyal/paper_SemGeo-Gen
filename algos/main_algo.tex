@@ -1,0 +1,45 @@
+\begin{algorithm}[t]
+\DontPrintSemicolon
+\caption{Automatic Approximate Semantic-Geometric Correspondence Generation}
+\label{alg:correspondence_generation}
+
+\KwIn{
+Rotation-aligned and scale-normalized object pairs 
+\(\mathcal{P}=\{(\mathcal{S}_k,\mathcal{T}_k)\}_{k=1}^{K}\);
+lifted 3D DINOv2 features;
+semantic similarity threshold \(\tau_{\mathrm{sem}}\);
+optional coverage threshold \(\gamma\).
+}
+\KwOut{
+Approximate semantic-geometric correspondences.
+}
+
+\ForEach{\((\mathcal{S},\mathcal{T}) \in \mathcal{P}\)}{
+
+    Let \((\mathcal{X}_S,\mathcal{F}_S)\) and \((\mathcal{X}_T,\mathcal{F}_T)\) be the source and target representations\;
+
+    \If{semantic coverage filtering is enabled}{
+        \If{\(\rho_{\mathrm{sem}}(\mathcal{S}\!\rightarrow\!\mathcal{T}) < \gamma\) 
+        \textbf{or} 
+        \(\rho_{\mathrm{sem}}(\mathcal{T}\!\rightarrow\!\mathcal{S}) < \gamma\)}{
+            \textbf{continue}\;
+        }
+    }
+
+    Estimate \(T_{\mathrm{CPA}}\) by minimizing Eq.~\eqref{eq:cpa_objective}\;
+
+    Compute the deformed source 
+    \(\widehat{\mathcal{X}}_S = T_{\mathrm{CPA}}(\mathcal{X}_S)\)\;
+
+    Assign each \(\hat{x}_i^S \in \widehat{\mathcal{X}}_S\) to its nearest neighbor in \(\mathcal{X}_T\) using Eq.~\eqref{eq:nearest_neighbor_assignment}\;
+
+    Construct candidate correspondences \(\mathcal{C}_{\mathcal{S},\mathcal{T}}^{0}\)\;
+
+    Prune correspondences using the semantic criterion in Eq.~\eqref{eq:semantic_pruning_condition}\;
+
+    Store the final correspondence set \(\mathcal{C}_{\mathcal{S},\mathcal{T}}\)\;
+}
+
+\textbf{Return} all processed object pairs that were not filtered out and their correspondence sets.
+
+\end{algorithm}

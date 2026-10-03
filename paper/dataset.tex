@@ -1,0 +1,12 @@
+% \section{Dataset}
+% \label{sec:dataset}
+% Our pipeline can be applied to any pair of rigid 3D objects that are approximately rotation-aligned. In this work, we leverage two existing 3D datasets that offer large-scale collections of synthetic objects with approximate canonical orientations. 
+
+% \textbf{KeypointNet}~\cite{you2020} contains a limited set of object categories with many shapes per category, and also provides sparse human-annotated semantic keypoints. We use the 3D shapes from 13 rigid categories: airplane, bathtub, bed, car, chair, guitar, helmet, knife, laptop, motorcycle, mug, cap, and vessel, excluding rotationally symmetric categories such as skateboard, table, and bottle. This subset contains 6{,}755 shapes and yields 2{,}544{,}969 within-category pairs.
+
+% \textbf{Objaverse-OA} \cite{orient_anything} provides substantially broader category and shape diversity, but does not contain correspondence annotations. We curate it by removing non-rigid, articulated, and rotationally symmetric categories, retaining rigid object types, and applying our pipeline to automatically generate semantic-geometric correspondences.
+
+% \input{tables/datasets_comparison}
+
+
+% Together, the two sources contribute roughly 12{,}000 shapes spanning 100+ categories and over 2.6M within-category 3D pairs. KeypointNet provides a very large  set of objects with few rigid categories, while Objaverse-OA provides broad-coverage shape diversity for large-scale automatic correspondence generation. Since correspondences are established in 3D, each pair can be rendered from arbitrary viewpoints, yielding effectively unbounded 2D correspondence data.

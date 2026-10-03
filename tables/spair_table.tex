@@ -1,0 +1,64 @@
+\begin{table*}[t]
+\captionsetup{justification=centering}
+\small
+\setlength{\tabcolsep}{2.6pt}
+\renewcommand{\arraystretch}{0.95}
+\caption{Category-wise PCK@0.10 results on selected SPair-71k categories with well-defined semantic-geometric correspondences. P.T. denotes pretraining.}
+\label{tab:spair_pck010}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llccccccccc|c}
+\toprule
+Method & Training regime & aero & bike & boat & bus & car & chair & mbike & train & tv & Mean \\
+\midrule
+\multicolumn{12}{c}{\textit{Unsupervised / weakly supervised methods}} \\
+\midrule
+SD \cite{rombach2022stablediffusion,zhang2023taleTwoFeatures} & SPair-71k & 62.8 & 52.7 & 31.2 & 39.1 & 35.6 & 32.0 & 51.0 & 61.8 & 52.9 & 46.57 \\
+DINOv2 \cite{oquab2024dinov2,zhang2023taleTwoFeatures} & SPair-71k & 73.4 & 60.2 & 43.2 & 46.7 & 45.1 & 33.4 & 60.7 & 54.2 & 23.9 & 48.98 \\
+DINOv2+SD \cite{zhang2023taleTwoFeatures} & SPair-71k & 73.8 & 61.0 & 40.2 & 47.4 & 44.1 & 41.5 & 61.7 & 63.5 & 52.4 & 53.96 \\
+SphericalMaps \cite{mariotti2024sphericalmap} & SPair-71k & 76.2 & 60.1 & 46.5 & 74.9 & 68.0 & 45.1 & 69.1 & 73.9 & 58.1 & 63.54 \\
+\midrule
+\multicolumn{12}{c}{\textit{Supervised methods}} \\
+\midrule
+SCorrSan \cite{huang2022SCorrSan} & SPair-71k & 57.1 & 40.3 & 38.1 & 57.8 & 47.1 & 25.2 & 45.3 & 77.7 & 69.7 & 50.92 \\
+CATS++ \cite{cho2022cats++}  & SPair-71k & 60.6 & 46.9 & 41.6 & 64.9 & 50.4 & 29.2 & 50.9 & 80.9 & 74.9 & 55.59 \\
+DHF \cite{luo2023DiffusionHyperFeaturesTimeSpace} & SPair-71k & 74.0 & 61.0 & 40.7 & 70.0 & 74.4 & 38.5 & 66.6 & 87.4 & 60.3 & 63.66 \\
+DINO+SD (S) \cite{zhang2023taleTwoFeatures} & SPair-71k & 84.7 & 67.5 & 64.5 & 85.7 & 82.0 & 57.0 & 75.9 & 93.6 & 70.5 & 75.71 \\
+Jamais Vu \cite{mariotti2025jamaisvu} & SPair-71k 
+& 83.6 & 70.1 & 64.1 & 91.4 & 83.2 & 61.4 & 78.4 & 95.5 & 80.1 & 78.80 \\
+\midrule
+\multicolumn{12}{c}{\textit{Recent supervised state-of-the-art methods under different supervision settings}} \\
+\midrule
+\multirow{3}{*}{GeoAware-SC \cite{zhang2024tellingLeftFromRight}}
+& SPair-71k & 83.42 & 71.07 & 66.68 & 90.93 & 86.10 & 62.18 & 79.54 & 95.33 & 79.00 & 79.36 \\
+& SPair-71k + Ours & 86.28 & 74.60 & 68.33 & 93.12 & 84.73 & 68.94 & 79.73 & 95.31 & 80.73 & 81.31 \\
+& Ours P.T. $\rightarrow$ SPair-71k & \textbf{89.38} & \textbf{76.11} & \textbf{71.15} & \textbf{93.80} & \textbf{86.74} & \textbf{73.80} & \textbf{82.33} & \textbf{95.67} & \textbf{84.59} & \textbf{83.73} \\
+\midrule
+\multirow{3}{*}{MARCO \cite{cuttano2026marco}}
+& SPair-71k 
+& 92.16 & 76.76 & 76.53 & 93.17 & 88.57 & 82.49 & 82.03 & 93.62 & 91.72 & 86.39 \\
+& SPair-71k + Ours 
+& 92.26 & 77.49 & 73.74 & 92.59 & 84.86 & 82.71 & 79.78 & 93.22 & 89.72 & 85.23 \\
+& Ours P.T. $\rightarrow$ SPair-71k 
+& \textbf{95.59} & \textbf{80.66} & \textbf{79.35} & \textbf{94.59} & \textbf{91.89} & \textbf{91.16} & \textbf{82.30} & \textbf{94.69} & \textbf{93.49} & \textbf{89.28} \\
+\bottomrule
+\end{tabular}
+}
+\end{table*}
+
+
+% \begin{table*}[h]
+% \centering
+% \caption{Category-wise PCK@0.10 results on SPair-71k (rigid categories).}
+% \label{tab:spair_pck010}
+% \begin{tabular}{lcccccccccc}
+% \toprule
+% Training regime & aero & bike & boat & bus & car & chair & mbike & train & tv & Mean \\
+% \midrule
+% SPair-71k & 83.42 & 71.07 & 66.68 & 90.93 & 86.10 & 62.18 & 79.54 & 95.33 & 79.00 & 79.36 \\
+% SPair-71k + Ours & 86.28 & 76.11 & 68.33 & 93.12 & 86.74 & 68.94 & 79.73 & 95.31 & 80.73 & 81.70 \\
+% AP-10K $\rightarrow$ SPair-71k & 89.34 & 74.45 & 65.43 & 90.68 & 86.28 & 70.26 & 79.81 & 95.51 & 79.04 & 81.20 \\
+% Ours $\rightarrow$ SPair-71k & 89.38 & 74.60 & 71.15 & 93.80 & 84.73 & 73.80 & 82.33 & 95.67 & 84.59 & 83.34 \\
+% AP-10K $\rightarrow$ Ours $\rightarrow$ SPair-71k & 91.43 & 75.55 & 68.21 & 94.59 & 88.16 & 79.01 & 83.59 & 95.95 & 81.92 & \textbf{84.27} \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}

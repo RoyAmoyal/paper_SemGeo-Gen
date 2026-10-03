@@ -1,0 +1,96 @@
+\begin{figure*}[t]
+    \centering
+    \includegraphics[
+        width=\textwidth,
+        trim={0pt 25pt 0pt 245pt},
+        clip
+    ]{figures/method/powerpoint_full_method.png}
+    \vspace{-4mm}
+    \caption{Overview of our correspondence generation pipeline.}
+    \label{fig:method_overview}
+\end{figure*}
+
+
+% \begin{figure*}[t]
+% \centering
+% \resizebox{\textwidth}{!}{
+% \begin{tikzpicture}[
+%     node distance=1.2cm,
+%     box/.style={
+%         rounded corners=6pt,
+%         fill=blue!12,
+%         minimum width=3.0cm,
+%         minimum height=1.1cm,
+%         align=center,
+%         font=\large
+%     },
+%     arrow/.style={->, thick, >=latex}
+% ]
+
+% \node[align=center] (source) {
+%     \textbf{3D source object}\\[2mm]
+%     \includegraphics[width=3.0cm]{figures/method/source.png}
+% };
+
+% \node[align=center, below=1.0cm of source] (target) {
+%     \textbf{3D target object}\\[2mm]
+%     \includegraphics[width=3.0cm]{figures/method/target.png}
+% };
+
+% \node[box, right=2.2cm of source, yshift=-1.7cm] (cpa) {
+%     CPA Registration
+% };
+
+% \coordinate (midleft) at ($(source.east)!0.5!(target.east)$);
+% \draw[arrow] (midleft) -- (cpa.west);
+
+% \node[align=center, below=0.9cm of cpa] (cpa_vis) {
+%     \includegraphics[width=4.8cm]{figures/method/cpa_registration.png}
+% };
+
+% \node[align=center, right=2.0cm of cpa] (deformed_src) {
+%     \textbf{Deformed source object}\\[2mm]
+%     \includegraphics[width=3.2cm]{figures/method/deformed_source.png}
+% };
+
+% \draw[arrow] (cpa.east) -- (deformed_src.west);
+
+% \node[box, right=2.0cm of deformed_src] (corr) {
+%     Correspondences\\Establishment
+% };
+
+% \draw[arrow] (deformed_src.east) -- (corr.west);
+
+% \node[align=center, above=0.9cm of corr] (corr_vis) {
+%     \includegraphics[width=3.8cm]{figures/method/deformed_source.png}
+% };
+
+% \node[align=center, below=1.2cm of deformed_src] (srcsem) {
+%     \textbf{Deformed source}\\
+%     \textbf{semantics}\\[2mm]
+%     \includegraphics[width=3.0cm]{figures/method/deformed_source_semantics.png}
+% };
+
+% \node[align=center, right=4.0cm of srcsem] (tgtsem) {
+%     \textbf{Target object}\\
+%     \textbf{semantics}\\[2mm]
+%     \includegraphics[width=3.0cm]{figures/method/target_semantics.png}
+% };
+
+% \node[box, below=1.2cm of corr] (prune) {
+%     Semantic\\Correspondences\\Pruning
+% };
+
+% \draw[arrow] (corr.south) -- (prune.north);
+
+% \node[align=center, below=1.3cm of prune] (final) {
+%     \includegraphics[width=6.5cm]{figures/method/final_correspondences.png}
+% };
+
+% \draw[arrow] (prune.south) -- (final.north);
+
+% \end{tikzpicture}
+% }
+% \caption{Overview of our correspondence generation pipeline.}
+% \label{fig:method_overview}
+% \end{figure*}
