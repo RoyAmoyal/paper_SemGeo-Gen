@@ -3,17 +3,18 @@
 We propose a fully automatic pipeline for generating approximate 3D--3D cross-instance semantic-geometric correspondences between rigid objects, which can be projected into rendered views to obtain 3D--2D and 2D--2D correspondences.
 %
 The pipeline's input is a collection of object pairs
-\(\mathcal{P}=\{(\mathcal{S}_k,\mathcal{T}_k)\}_{k=1}^{K}\), where each source object \(\mathcal{S}_k\) and target object \(\mathcal{T}_k\) are rotation-aligned and normalized to a common scale.
-This assumption provides a weak category-level geometric prior, but does not provide any point-level, part-level, or correspondence supervision.
+\(\mathcal{P}=\{(\mathcal{S}_k,\mathcal{T}_k)\}_{k=1}^{K}\), where each source object \(\mathcal{S}_k\) and target object \(\mathcal{T}_k\) are approximately rotation-aligned. We normalize each object to the unit sphere.
+This assumption provides a weak category-level geometric prior, but does not require any point-level, part-level, or correspondence supervision. 
 
 For each object pair, our pipeline proceeds in three main stages.
-First, we extract per-point semantic descriptors by rendering each object from multiple views, computing dense DINOv2 features, and lifting them back to 3D (\autoref{sec:feature_lifting}).
+First, we extract per-point semantic descriptors by rendering each object from multiple views, computing dense DINOv2 features, and lifting and back-projecting them to 3D (\autoref{sec:feature_lifting}).
 Second, we estimate a continuous piecewise-affine (CPA) deformation from the source to the target and extract candidate correspondences via nearest-neighbor assignment after alignment.
 Third, we prune semantically inconsistent matches, retaining approximate correspondences that are jointly constrained by deformable geometric alignment and multi-view semantic consistency.
 
 In addition, we optionally apply a bidirectional semantic-coverage filter (\autoref{sec:pair_filter}) before registration to reject object pairs with insufficient semantic overlap.
 This step reduces the number of retained pairs, but improves the quality of the remaining pairs and the resulting correspondences.
-The full procedure is summarized in \hyperref[alg:correspondence_generation]{Algorithm~\ref*{alg:correspondence_generation}}.
+The pipeline is illustrated in \autoref{fig:method_overview}
+and summarized in \hyperref[alg:correspondence_generation]{Algorithm~\ref*{alg:correspondence_generation}}.
 
 \subsection{Object Representation and Feature Lifting}
 \label{sec:feature_lifting}
@@ -30,7 +31,8 @@ Each object \(\mathcal{O}\) is represented as a point cloud with an associated s
 Here, \(x_i\) denotes a 3D point sampled from the object surface, and \(f_i\) denotes its corresponding semantic descriptor.
 % 
 To obtain these descriptors, we render each object from a set of calibrated virtual cameras, extract dense DINOv2 \cite{oquab2024dinov2} features in image space, and lift them back to the visible 3D points using known camera projection and depth.
-We then aggregate multi-view observations to obtain a single semantic descriptor for each 3D point.
+We then aggregate multi-view observations by averaging to obtain
+a single semantic descriptor for each 3D point.
 % 
 For a source-target pair \((\mathcal{S},\mathcal{T})\), we write
 \begin{equation}
@@ -48,22 +50,26 @@ where
 \subsection{Semantic Similarity}
 \label{sec:semantic_sim}
 
-We measure semantic compatibility using cosine similarity in the reduced descriptor space. Specifically, we apply Principal Component Analysis (PCA) jointly to the source and target DINOv2 descriptors and reduce them to 64 dimensions. We denote the reduced descriptor corresponding to \(f_i\) by \(z_i\).
-
-Given two points \(x_i\) and \(x_j\) with reduced descriptors \(z_i\) and \(z_j\), we define the semantic similarity as
+We measure semantic compatibility using cosine similarity between
+DINOv2~\cite{oquab2024dinov2} descriptors jointly reduced to 64
+dimensions via Principal Component Analysis (PCA).
+Let $z_i$ denote the reduced descriptor of point $x_i$.
+We define
 \begin{equation}
 \label{eq:semantic_similarity}
 s_{\mathrm{sem}}(x_i,x_j)
 =
 \frac{z_i^\top z_j}{\|z_i\|_2 \|z_j\|_2}.
 \end{equation}
-
 Two points are considered semantically compatible if
 \begin{equation}
 \label{eq:semantic_compatibility}
 s_{\mathrm{sem}}(x_i,x_j) > \tau_{\mathrm{sem}},
 \end{equation}
-where \(\tau_{\mathrm{sem}} = 0.85\) in all experiments.
+where $\tau_{\mathrm{sem}}=0.575$. In our implementation, this corresponds to a squared Euclidean
+distance threshold of $0.85$ between L2-normalized descriptors,
+since $\|\hat z_i-\hat z_j\|_2^2=2(1-s_{\mathrm{sem}}(x_i,x_j))$,
+where $\hat z=z/\|z\|_2$.
 
 
 \subsection{Optional Semantic Coverage Pair Filtering}
@@ -110,8 +116,8 @@ T_{\mathrm{CPA}}:\mathbb{R}^{3}\rightarrow\mathbb{R}^{3},
 which produces a continuous, spatially coherent deformation field while allowing local shape variation across object instances.
 %
 This transformation is parameterized by a regular control grid over the normalized 3D domain, which is decomposed into tetrahedral cells using Delaunay triangulation.
-Each grid vertex is associated with a learnable displacement vector, and the displacement of an arbitrary source point is obtained by barycentric interpolation from the vertices of the tetrahedron containing it.
-This yields a deformation field that is locally affine within each tetrahedron and continuous across neighboring cells.
+Each grid vertex is associated with an optimized displacement vector, and we obtain the displacement of an arbitrary source point by barycentric interpolation from the vertices of the tetrahedron containing it.
+This yields a deformation field that is locally affine within each tetrahedron and continuous across neighboring cells. Unlike CPAB transformations~\cite{Freifeld:TPAMI:2017:CPAB,Aflalo:NeurIPS:2026:FG-CPAB}, which are obtained by integrating CPA velocity fields, here we use CPA mappings directly as transformations.
 
 We estimate the transformation by optimizing a Chamfer distance loss~\cite{fan2017chamfer} with smoothness regularization via gradient descent:
 \begin{equation}
@@ -161,8 +167,11 @@ The smoothness term regularizes neighboring control-grid displacements:
 u_{v_a}-u_{v_b}
 \right\|_2^2,
 \end{equation}
-where \(\mathcal{E}\) denotes edges between neighboring vertices in the tetrahedral control grid.
-This regularization promotes locally coherent deformations while still allowing non-rigid cross-instance variation.
+where \(\mathcal{E}\) denotes edges between neighboring vertices
+in the tetrahedral control grid, and \(u_v\in\mathbb{R}^3\)
+denotes the displacement vector associated with vertex \(v\).
+This regularization promotes locally coherent deformations while
+still allowing non-rigid cross-instance variation.
 %
 After optimization, the transformed source point cloud is given by
 \begin{equation}
@@ -255,4 +264,8 @@ The generated correspondences, established in 3D, can be directly projected into
 \pi_{c_T}(x_j^T)
 \right),
 \end{equation}
-where \(c_S\) and \(c_T\) denote the selected source and target camera views. Projecting one endpoint yields 3D--2D supervision, while projecting both endpoints yields 2D--2D supervision. By rendering multiple views of each object pair, we obtain large-scale automatically generated training data for image-based semantic correspondence models.
+where \(c_S\) and \(c_T\) denote the selected source and target camera views.
+Projecting one endpoint yields 3D--2D supervision, while projecting both endpoints yields 2D--2D supervision.
+In either case, we retain only correspondences whose projected endpoints are visible in their respective rendered views.
+By rendering multiple views of each object pair, we obtain large-scale automatically generated training data for image-based semantic correspondence models.
+

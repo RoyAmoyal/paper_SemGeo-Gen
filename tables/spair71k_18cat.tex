@@ -1,0 +1,43 @@
+\begin{table}[h!]
+    \centering
+    \captionsetup{justification=centering}
+    \small
+    \setlength{\tabcolsep}{3pt}
+    \renewcommand{\arraystretch}{0.95}
+
+    \caption{
+        \textbf{Generalization across all SPair-71k categories.}
+        GeoAware-SC pretrained on Rigid-9 synthetic correspondences
+        and fine-tuned on all 18 SPair-71k categories.
+        PCK@0.10 (\%); improvements over real-only
+        training are shown in parentheses.
+    }
+    \label{tab:spair_all18}
+
+    \vspace{4pt}
+
+    \centering
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Training regime} &
+        Rigid-9 &
+        Non-rigid-7 &
+        Sym.-2 &
+        All-18 \\
+        \midrule
+
+        Real only
+        & 80.48 & 86.94 & 72.35 & 82.09 \\
+
+        DenseMatcher \cite{zhu2025densematcher} P.T. $\rightarrow$ Real
+        & 80.37 & 86.54 & 71.97 & 81.83 \\
+
+        \textbf{Ours P.T. $\rightarrow$ Real}
+        & \textbf{84.20} & \textbf{88.23}
+        & \textbf{72.58} & \textbf{84.48} \\
+        & \textbf{(+3.72)} & \textbf{(+1.29)}
+        & \textbf{(+0.23)} & \textbf{(+2.39)} \\
+
+        \bottomrule
+    \end{tabular}
+\end{table}

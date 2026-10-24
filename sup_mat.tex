@@ -1,76 +1,3 @@
-% \documentclass{article}
-
-
-% % if you need to pass options to natbib, use, e.g.:
-% %     \PassOptionsToPackage{numbers, compress}{natbib}
-% % before loading neurips_2025
-
-% \usepackage[numbers]{natbib}
-% % ready for submission
-% \usepackage{neurips_2026}
-% \usepackage{enumitem}
-
-% to compile a preprint version, e.g., for submission to arXiv, add add the
-% [preprint] option:
-%     \usepackage[preprint]{neurips_2025}
-
-
-% to compile a camera-ready version, add the [final] option, e.g.:
-%     \usepackage[final]{neurips_2025}
-
-
-% to avoid loading the natbib package, add option nonatbib:
-%    \usepackage[nonatbib]{neurips_2025}
-
-
-% \usepackage[utf8]{inputenc} % allow utf-8 input
-% \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
-% %\usepackage{hyperref}       % hyperlinks
-% \usepackage{url}            % simple URL typesetting
-% \usepackage{booktabs}       % professional-quality tables
-% \usepackage{amsfonts}       % blackboard math symbols
-% \usepackage{nicefrac}       % compact symbols for 1/2, etc.
-% \usepackage{microtype}      % microtypography
-% \usepackage{xcolor}         % colors
-% \usepackage{graphicx}
-% \usepackage{amsmath,amssymb}
-% \usepackage{tikz}
-% \usepackage[
-%   dvipsnames,   % ≈ 68 extra names
-%   svgnames,     % ≈ 151 SVG names (includes LightSkyBlue, SkyBlue, …)
-%   x11names      % ≈ 140 X11 names (PowderBlue, LightBlue, …)
-% ]{xcolor}
-
-% \usepackage{subcaption}
-% \usepackage{algorithm}
-% \usepackage{algorithmic}
-
-% \usepackage{comment}
-% \usepackage{import}
-% %\subimport{Neurips2025}{packages}
-% %\subimport{Neurips2025}{macros}
-
-% \usepackage{placeins}
-
-% \usepackage{import, hyperref}
-% % To have short pointers for sections and subsections. Oren Freifeld
-% \renewcommand{\sectionautorefname}{\S} 
-% \renewcommand{\subsectionautorefname}{\S} 
-% \renewcommand{\subsubsectionautorefname}{\S} 
-% \renewcommand{\equationautorefname}{Eq.}
-% %\renewcommand{\figureautorefname}{Fig.}
-% % \Autoref is for the beginning of the sentence
-% \let\orgautoref\autoref
-% \newcommand{\Autoref}[1]{%
-% \begingroup%
-% \renewcommand{\equationautorefname}{Equation}%
-% \renewcommand{\figureautorefname}{Figure}%
-% \autoref{#1}%
-% \endgroup%
-% }
-
-
-
 \begin{center}
 {\LARGE \textbf{SemGeo-Gen: Unsupervised Generation of Approximate Cross-Instance Semantic-Geometric Correspondences}}\\[4pt]
 {\large ------------}\\[4pt]
@@ -80,58 +7,16 @@
 \vspace{1em}
 
 
-% The \author macro works with any number of authors. There are two commands
-% used to separate the names and addresses of multiple authors: \And and \AND.
-%
-% Using \And between authors leaves it to LaTeX to determine where to break the
-% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
-% authors names on the first line, and the last on the second line, try using
-% \AND instead of \And before the third author name.
-
-
-\author{%
-  David S.~Hippocampus\thanks{Use footnote for providing further information
-    about author (webpage, alternative address)---\emph{not} for acknowledging
-    funding agencies.} \\
-  Department of Computer Science\\
-  Cranberry-Lemon University\\
-  Pittsburgh, PA 15213 \\
-  \texttt{hippo@cs.cranberry-lemon.edu} \\
-  % examples of more authors
-  % \And
-  % Coauthor \\
-  % Affiliation \\
-  % Address \\
-  % \texttt{email} \\
-  % \AND
-  % Coauthor \\
-  % Affiliation \\
-  % Address \\
-  % \texttt{email} \\
-  % \And
-  % Coauthor \\
-  % Affiliation \\
-  % Address \\
-  % \texttt{email} \\
-  % \And
-  % Coauthor \\
-  % Affiliation \\
-  % Address \\
-  % \texttt{email} \\
-}
-
-
-
-
 In this supplementary material, we provide additional qualitative results, extended ablations, and detailed per-label analysis to complement the main paper.
 
 
 \section*{Contents}
 \begin{enumerate}[]
     \item \autoref{sup:qualitative} - Qualitative Results on SPair-71k and KeypointNet.
-    \item \autoref{sup:supp_spair} - Additional Quantitative Results on SPair-71k.
+\item \autoref{sup:additional_quant} - Additional Quantitative Results.
     \item \autoref{sup:ablation_study} - Extended Ablation Study.
     \item \autoref{sup:supp_semantic_analy} - Qualitative Analysis of DINOv2 Based Semantic Filtering.
+    \item \autoref{sup:3d2d_eval} - 3D--2D Correspondence Evaluation on KeypointNet.
     \item \autoref{Sup:per_label} - Detailed PCK Results by Semantic Label and KeypointNet Category.
 \end{enumerate}
 \clearpage
@@ -149,12 +34,12 @@ We provide qualitative SPair-71k \cite{min2019spair71k} examples comparing model
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{cc}
 \textbf{MARCO \cite{cuttano2026marco} Real-only} & \textbf{MARCO \cite{cuttano2026marco} Ours P.T.$\rightarrow$Real} \\
-\includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_real_chair.png} &
-\includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_ours_chair.png} \\
-\includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_real_boat.png} &
-\includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_ours_boat.png} \\
-\includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_real_bicycle.png} &
-\includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_ours_bicycle.png} \\
+\includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_real_chair_bold.png} &
+\includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_ours_chair_bold.png} \\
+\includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_real_boat_bold.png} &
+\includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_ours_boat_bold.png} \\
+\includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_real_bicycle_bold.png} &
+\includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_ours_bicycle_bold.png} \\
 \end{tabular}
 \caption{\textbf{Qualitative SPair-71k \cite{min2019spair71k} results for MARCO \cite{cuttano2026marco}.}
 Each image shows a source--target pair with predicted correspondences. We compare MARCO trained on SPair-71k against MARCO pretrained on our generated correspondences and then fine-tuned on SPair-71k.}
@@ -167,12 +52,12 @@ Each image shows a source--target pair with predicted correspondences. We compar
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{cc}
 \textbf{GeoAware-SC Real-only} & \textbf{GeoAware-SC Ours P.T.$\rightarrow$Real} \\
-\includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_real_airplane.png} &
-\includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_ours_airplane.png} \\
-\includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_real_bus.png} &
-\includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_ours_bus.png} \\
-\includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_real_bike.png} &
-\includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_ours_bike.png} \\
+\includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_real_airplane_bold.png} &
+\includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_ours_airplane_bold.png} \\
+\includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_real_bus_bold.png} &
+\includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_ours_bus_bold.png} \\
+\includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_real_bike_bold.png} &
+\includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_ours_bike_bold.png} \\
 \end{tabular}
 \caption{\textbf{Qualitative SPair-71k \cite{min2019spair71k} results for GeoAware-SC \cite{zhang2024tellingLeftFromRight}.}
 Each image shows a source--target pair with predicted correspondences. We compare GeoAware-SC trained on SPair-71k against GeoAware-SC pretrained on our generated correspondences and then fine-tuned on SPair-71k.}
@@ -197,53 +82,6 @@ Qualitative correspondence examples on categories beyond existing correspondence
 }
 \label{fig:new_categories_examples}
 \end{figure*}
-
-% \begin{figure*}[t]
-% \centering
-% \includegraphics[width=\linewidth,height=\kpimgheight,trim={100 150 100 40},clip]{figures/matching_examples/baby_buggy_highres.png}\vfill
-% % \includegraphics[width=\linewidth,height=\kpimgheight,trim={0 20 70 40},clip]{figures/matching_examples/backpack_highres.png}\vfill
-% % \includegraphics[width=\linewidth,height=\kpimgheight,trim={00 45 50 0},clip]{figures/matching_examples/barbell.png}
-% \caption{
-% Qualitative correspondence examples on categories beyond existing correspondence benchmarks. Colors indicate sampled semantic-geometric correspondences established by our method.
-
-% We provide qualitative SPair-71k \cite{min2019spair71k} examples comparing models trained only on real SPair-71k annotations with the same models pretrained on our generated synthetic correspondences and then fine-tuned on SPair-71k. We show results for both MARCO \cite{cuttano2026marco} (see \autoref{fig:qual_marco}) and GeoAware-SC \cite{zhang2024tellingLeftFromRight} (see \autoref{fig:qual_geoaware}).
-
-
-% \begin{figure*}[t]
-% \centering
-% \setlength{\tabcolsep}{3pt}
-% \begin{tabular}{cc}
-% \textbf{MARCO \cite{cuttano2026marco} Real-only} & \textbf{MARCO \cite{cuttano2026marco} Ours P.T.$\rightarrow$Real} \\
-% \includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_real_chair.png} &
-% \includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_ours_chair.png} \\
-% \includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_real_boat.png} &
-% \includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_ours_boat.png} \\
-% \includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_real_bicycle.png} &
-% \includegraphics[width=0.48\textwidth]{figures/qualitative/marco/match_ours_bicycle.png} \\
-% \end{tabular}
-% \caption{\textbf{Qualitative SPair-71k \cite{min2019spair71k} results for MARCO \cite{cuttano2026marco}.}
-% Each image shows a source--target pair with predicted correspondences. We compare MARCO trained on SPair-71k against MARCO pretrained on our generated correspondences and then fine-tuned on SPair-71k.}
-% \label{fig:qual_marco}
-% \end{figure*}
-
-
-% \begin{figure*}[t]
-% \centering
-% \setlength{\tabcolsep}{3pt}
-% \begin{tabular}{cc}
-% \textbf{GeoAware-SC Real-only} & \textbf{GeoAware-SC Ours P.T.$\rightarrow$Real} \\
-% \includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_real_airplane.png} &
-% \includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_ours_airplane.png} \\
-% \includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_real_bus.png} &
-% \includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_ours_bus.png} \\
-% \includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_real_bike.png} &
-% \includegraphics[width=0.48\textwidth]{figures/qualitative/geoaware/match_ours_bike.png} \\
-% \end{tabular}
-% \caption{\textbf{Qualitative SPair-71k \cite{min2019spair71k} results for GeoAware-SC \cite{zhang2024tellingLeftFromRight}.}
-% Each image shows a source--target pair with predicted correspondences. We compare GeoAware-SC trained on SPair-71k against GeoAware-SC pretrained on our generated correspondences and then fine-tuned on SPair-71k.}
-% \label{fig:qual_geoaware}
-% \end{figure*}
-
 
 \clearpage
 \subsection{Qualitative Results on KeypointNet}
@@ -310,28 +148,32 @@ We further show examples with strong agreement in \autoref{fig:keypointnet_stron
 \end{figure}
 
 
-
-
-
-
-
-
-
 \clearpage
-\section{Additional Quantitative Results on SPair-71k}
-\label{sup:supp_spair}
 
+\section{Additional Quantitative Results}
+\label{sup:additional_quant}
+
+We provide additional quantitative evaluations on SPair-71k \cite{min2019spair71k}
+and KeypointNet \cite{you2020}. On SPair-71k, we examine different PCK
+thresholds and training strategies, highlighting the
+effectiveness of synthetic pretraining across architectures
+and feature representations. On KeypointNet, we compare
+our generated correspondences against the few-shot
+semantic keypoint detector Back to 3D.
+
+\subsection{Additional Results on SPair-71k}
+\label{sup:supp_spair}
 We provide additional evaluation results on SPair-71k \cite{min2019spair71k} across multiple PCK thresholds and training regimes. While the main paper reports PCK@0.10 (see \autoref{tab:spair_pck010}), here we analyze performance at stricter and looser thresholds, and compare four training strategies: \emph{Synth-only}, \emph{Both} (joint real and synthetic training), \emph{Real-only}, and \emph{Synth$\rightarrow$Real} (pretraining on synthetic correspondences followed by fine-tuning on real data).
 
 \paragraph{MARCO \cite{cuttano2026marco} results.}
-Across all thresholds (PCK@0.01-0.20), the Synth$\rightarrow$Real setting consistently outperforms Real-only training at practical thresholds. In particular, improvements of $+2.4$ to $+2.9$ PCK are observed for PCK@0.05--0.20. At PCK@0.10, performance improves from $86.39$ to $89.28$, matching the results reported in \autoref{tab:spair_pck010}.
+Across most thresholds (PCK@0.05--0.20), we observed that the Synth$\rightarrow$Real setting consistently outperforms Real-only training at practical thresholds. Improvements of approximately $+2.4$ to $+3.0$ PCK are observed for all PCK@0.05--0.20, and specifically at PCK@0.10, performance improves from $86.34$ to $89.30$ ($+2.96$), matching the results reported in \autoref{tab:spair_pck010}.
 
-At very strict thresholds (PCK@0.01), Synth$\rightarrow$Real slightly underperforms Real-only ($-2.17$). However, this gap disappears at more relaxed thresholds, where Synth$\rightarrow$Real consistently achieves the best performance.
+However, at a very strict threshold (PCK@0.01), Synth$\rightarrow$Real slightly underperforms Real-only ($-2.17$). However, this gap disappears at more relaxed thresholds, where Synth$\rightarrow$Real consistently achieves the best performance.
 
 We also observe that joint training (\emph{Both}) underperforms Real-only, indicating that naive mixing of synthetic and real data is suboptimal, and that a two-stage training strategy is more effective.
 
 \paragraph{GeoAware-SC \cite{zhang2024tellingLeftFromRight} results.}
-We observe the same qualitative trend for GeoAware-SC. Synth$\rightarrow$Real consistently improves over Real-only training across all evaluated thresholds, while Synth-only performs poorly in isolation. Joint training again underperforms Real-only, reinforcing that synthetic correspondences are most effective as a pretraining signal rather than as direct supervision.
+We observe the similiar qualitative trend for GeoAware-SC. Synth$\rightarrow$Real consistently improves over Real-only training across all evaluated thresholds (including improvement at the very strict threshold of PCK@0.01), while Synth-only performs poorly in isolation. Joint training slightly outperforms Real-only, but remains inferior to synthetic pretraining followed by real-data fine-tuning, reinforcing that synthetic correspondences are most effective as a pretraining signal rather than as direct joint supervision.
 
 At PCK@0.10, as we see in the results from the main paper (\autoref{tab:spair_pck010}), synthetic pretraining improves performance from $79.36$ to $83.73$, corresponding to a gain of $+4.37$ PCK.
 
@@ -343,7 +185,7 @@ Using the PCK@0.10 results from \autoref{tab:spair_pck010}, we observe consisten
 Architecture & DINOv2 \cite{oquab2024dinov2} & Stable Diffusion \cite{rombach2022stablediffusion} & Real-only & Synth$\rightarrow$Real & Gain \\
 \midrule
 GeoAware-SC \cite{zhang2024tellingLeftFromRight} & \checkmark & \checkmark & 79.36 & 83.73 & +4.37 \\
-MARCO \cite{cuttano2026marco}      & \checkmark & $\times$ & 86.39 & 89.28 & +2.89 \\
+MARCO \cite{cuttano2026marco} & \checkmark & $\times$ & 86.34 & 89.30 & +2.96 \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -353,20 +195,66 @@ GeoAware-SC \cite{zhang2024tellingLeftFromRight} uses both DINOv2 \cite{oquab202
 These consistent gains suggest that the benefit of synthetic pretraining is largely architecture-agnostic. Rather than improving a specific model design, the generated correspondences provide a strong pretraining signal that improves representation quality across different backbones and matching heads.
 
 \paragraph{Summary.}
-Overall, these results support three key observations: (i) synthetic correspondences alone are insufficient for high performance, (ii) naive joint training is suboptimal, and (iii) a two-stage Synth$\rightarrow$Real strategy consistently yields the best results. This pattern holds across architectures and evaluation thresholds, reinforcing the generality of the proposed data generation pipeline.
+Overall, these results support three key observations: (i) synthetic correspondences alone are insufficient for high performance, (ii) naive joint training is suboptimal, and (iii) a two-stage Synth$\rightarrow$Real strategy consistently yields the best results. This pattern holds across both architectures at practical evaluation thresholds, reinforcing the generality of the proposed data generation pipeline.
 
-% Add your qualitative figures / tables here
-% Example:
-% \subimport{./sup_mat/figures}{qualitative_results}
-% \subimport{./sup_mat/figures}{more_spair_vis}
-% \subimport{./sup_mat/figures}{more_keypointnet_vis}
+\subsection{Comparison with Back to 3D on KeypointNet}
+\label{sup:backto3d}
+
+We additionally compare against Back to 3D~\cite{wimmer2024back},
+a few-shot semantic keypoint detection method rather than a
+cross-instance correspondence method. Unlike SemGeo-Gen, it
+predicts predefined semantic keypoints using annotated source
+examples instead of generating dense correspondences without
+keypoint supervision. We evaluate its 1-shot and 3-shot settings
+on 100 object pairs per category (1,600 total).
+The annotated source keypoints define semantic template slots,
+and source-to-target associations are established through their
+shared KeypointNet labels. Predicted target locations are then
+evaluated using the same PCK thresholds as our correspondences.
+
+As shown in \autoref{tab:backto3d_comparison},
+SemGeo-Gen achieves 86.5\% PCK@0.10, outperforming
+Back to 3D's 1-shot (63.2\%) and 3-shot (64.1\%)
+settings, despite requiring no keypoint supervision.
+
+\begin{table}[h]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{\textbf{Comparison with Back to 3D \cite{wimmer2024back} on KeypointNet \cite{you2020}}
+Mean PCK over 16 categories (100 pairs per category).
+Back to 3D uses few-shot keypoint supervision;
+SemGeo-Gen requires none.}
+\label{tab:backto3d_comparison}
+\vspace{4pt}
+\begin{tabular}{lcccc}
+\toprule
+Method & @0.05 & @0.10 & @0.15 & @0.20 \\
+\midrule
+Back to 3D (1-shot) & 0.438 & 0.632 & 0.725 & 0.777 \\
+Back to 3D (3-shot) & 0.436 & 0.641 & 0.740 & 0.799 \\
+\textbf{SemGeo-Gen} & \textbf{0.648} & \textbf{0.865}
+& \textbf{0.945} & \textbf{0.977} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
 \clearpage
+
 \section{Extended Ablation Study}
 \label{sup:ablation_study}
+
+We provide additional ablation studies examining the
+contributions of the registration model and semantic filtering,
+as well as the sensitivity of our method to imperfect
+canonical alignment. These experiments further characterize
+the accuracy, efficiency, and robustness of our method.
+
 \subsection{Registration Method Ablation}
 \label{sup:ablation_registration}
 
-We ablate the deformation model used in the registration stage prior to correspondence extraction. All other components are kept fixed, including lifted DINOv2 \cite{oquab2024dinov2} features, nearest-neighbor assignment, and the semantic threshold $\tau_{\mathrm{sem}}=0.85$. We compare our default continuous piecewise-affine (CPA) model with two alternatives: a global affine transformation and a thin-plate spline (TPS) deformation.
+We ablate the deformation model used in the registration stage prior to correspondence extraction. All other components are kept fixed, including lifted DINOv2 \cite{oquab2024dinov2} features, nearest-neighbor assignment, and the semantic threshold $\tau_{\mathrm{sem}}=0.575$. We compare our default continuous piecewise-affine (CPA) model with two alternatives: a global affine transformation and a thin-plate spline (TPS) deformation.
 
 \paragraph{Affine.}
 As a global transformation baseline, we use an affine transformation
@@ -436,7 +324,7 @@ We first evaluate the pipeline without any semantic filtering. In this setting, 
 \subsubsection{Correspondence-Level Semantic Filtering Only}
 \label{sup:only_corr_filtering}
 
-We next evaluate correspondence-level semantic filtering alone, without pair-level filtering. In this setting, all object pairs are retained, and individual correspondences are pruned using a fixed threshold $\tau_{\mathrm{sem}}=0.85$.
+We next evaluate correspondence-level semantic filtering alone, without pair-level filtering. In this setting, all object pairs are retained, and individual correspondences are pruned using a fixed threshold $\tau_{\mathrm{sem}}=0.575$.
 
 \autoref{tab:pck_results} shows that this step alone leads to a substantial improvement over the no-filtering baseline. In particular, mean PCK@0.10 improves from 0.84 to 0.91, confirming that a large portion of the error arises from semantically inconsistent matches that are geometrically plausible but incorrect.
 
@@ -462,25 +350,93 @@ Results are averaged over three random seeds and 16 KeypointNet categories. Medi
 \toprule
 $\tau_{\mathrm{sem}}$ & PCK@0.05 $\uparrow$ & PCK@0.10 $\uparrow$ & PCK@0.15 $\uparrow$ & PCK@0.20 $\uparrow$ & Median GT-used rate $\uparrow$ \\
 \midrule
-0.50 & 0.758 & 0.930 & 0.974 & 0.988 & 0.260 \\
-0.85 & 0.749 & 0.926 & 0.973 & 0.989 & 0.576 \\
-1.50 & 0.699 & 0.896 & 0.960 & 0.983 & 0.915 \\
+0.75  & 0.758 & 0.930 & 0.974 & 0.988 & 0.260 \\
+0.575 & 0.749 & 0.926 & 0.973 & 0.989 & 0.576 \\
+0.25  & 0.699 & 0.896 & 0.960 & 0.983 & 0.915 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\autoref{tab:semantic_threshold_ablation} shows that the choice of threshold controls a clear tradeoff between accuracy and coverage. A strict threshold ($\tau_{\mathrm{sem}}=0.5$) achieves the highest accuracy but retains only 26.0\% of ground-truth keypoints, while a loose threshold ($\tau_{\mathrm{sem}}=1.5$) retains 91.5\% but significantly degrades accuracy.
+\autoref{tab:semantic_threshold_ablation} shows that the choice of threshold controls a clear tradeoff between
+accuracy and coverage. A strict threshold ($\tau_{\mathrm{sem}}=0.75$) achieves the highest accuracy at tight
+thresholds (75.8\% PCK@0.05) but retains only 26.0\% of ground-truth keypoints, while a loose threshold
+($\tau_{\mathrm{sem}}=0.25$) retains 91.5\% but degrades accuracy (69.9\% PCK@0.05, 89.6\% PCK@0.10).
+Our default ($\tau_{\mathrm{sem}}=0.575$) retains 57.6\% of the keypoints with almost no loss in accuracy
+compared to the strict setting.
 
-We therefore use $\tau_{\mathrm{sem}}=0.85$ as a practical middle point: it maintains similar accuracy to the stricter threshold while more than doubling the median GT-used rate (26.0\% $\rightarrow$ 57.6\%).
+
+We therefore use $\tau_{\mathrm{sem}}=0.575$ as a practical middle point: it maintains similar accuracy to the stricter threshold while more than doubling the median GT-used rate (26.0\% $\rightarrow$ 57.6\%).
 
 \paragraph{Discussion.}
 Overall, these results show that semantic filtering is essential for removing geometrically plausible but semantically incorrect correspondences. Most of the improvement comes from correspondence-level filtering, while pair-level filtering provides an additional refinement by removing object pairs with insufficient semantic overlap.
+
+
+
+\subsection{Sensitivity to Rotation Misalignment}
+\label{sup:rotation_sensitivity}
+
+We evaluate the robustness of SemGeo-Gen to imperfect
+canonical alignment. For each of the 16 KeypointNet
+categories, we sample 100 object pairs and randomly
+select either the source or target object to perturb
+with a random-axis rotation of $0^\circ$, $5^\circ$,
+$10^\circ$, $30^\circ$, $60^\circ$, or $90^\circ$.
+We measure correspondence accuracy using the same
+KeypointNet evaluation protocol.
+
+As shown in \autoref{tab:rotation_sensitivity},
+mean PCK@0.10 decreases from 0.93 for aligned objects
+to 0.89 and 0.85 at $5^\circ$ and $10^\circ$,
+respectively. Performance drops substantially at
+$30^\circ$ and beyond, confirming that approximate
+canonical alignment remains an important prerequisite
+for accurate correspondence generation.
+
+\begin{table}[h]
+    \centering
+    \captionsetup{justification=centering}
+    \fontsize{11}{13}\selectfont
+    \setlength{\tabcolsep}{2pt}
+    \renewcommand{\arraystretch}{1.05}
+
+    \caption{
+        \textbf{Sensitivity to rotation misalignment.}
+        Mean and median KeypointNet PCK under random-axis
+        rotations applied to either the source or target.
+    }
+    \label{tab:rotation_sensitivity}
+    \vspace{4pt}
+
+    \begin{tabular}{llcccccc}
+        \toprule
+        PCK & Stat.
+        & $0^\circ$ & $5^\circ$ & $10^\circ$
+        & $30^\circ$ & $60^\circ$ & $90^\circ$ \\
+        \midrule
+        \multirow{2}{*}{@0.05}
+        & Mean   & .75 & .71 & .65 & .32 & .10 & .04 \\
+        & Median & .78 & .75 & .69 & .25 & .06 & .02 \\
+        \midrule
+        \multirow{2}{*}{@0.10}
+        & Mean   & .93 & .89 & .85 & .55 & .20 & .08 \\
+        & Median & .94 & .91 & .88 & .52 & .13 & .05 \\
+        \midrule
+        \multirow{2}{*}{@0.15}
+        & Mean   & .98 & .94 & .90 & .66 & .26 & .12 \\
+        & Median & .98 & .95 & .91 & .64 & .20 & .07 \\
+        \midrule
+        \multirow{2}{*}{@0.20}
+        & Mean   & .99 & .95 & .91 & .70 & .30 & .14 \\
+        & Median & .99 & .95 & .91 & .67 & .26 & .09 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \clearpage
 \section{Qualitative Analysis of DINOv2 Based Semantic Filtering}
 \label{sup:supp_semantic_analy}
 
-We provide a qualitative analysis of the DINOv2 based semantic filtering used in our pipeline, both at the pair level and at the correspondence level. As shown in \autoref{fig:semantic_coverage_analysis}, we visualize the lifted DINOv2 features after joint PCA to three dimensions, and mark points according to whether they have any sufficiently similar semantic counterpart in the paired object. Green points have at least one point in the paired object with cosine similarity above our threshold of \(0.85\), while red points have no such candidate. We use this semantic coverage to filter object pairs that do not share enough semantic structure. In addition, for pairs that survive pair-level filtering, red points are guaranteed to be removed by our semantic pruning after registration. This filtering is complementary to the correspondence-level pruning, which further removes geometrically matched points whose assigned matches are semantically inconsistent.
+We provide a qualitative analysis of the DINOv2 based semantic filtering used in our pipeline, both at the pair level and at the correspondence level. As shown in \autoref{fig:semantic_coverage_analysis}, we visualize the lifted DINOv2 features after joint PCA to three dimensions, and mark points according to whether they have any sufficiently similar semantic counterpart in the paired object. Green points have at least one point in the paired object with cosine similarity above our threshold of \(0.575\), while red points have no such candidate. We use this semantic coverage to filter object pairs that do not share enough semantic structure. In addition, for pairs that survive pair-level filtering, red points are guaranteed to be removed by our semantic pruning after registration. This filtering is complementary to the correspondence-level pruning, which further removes geometrically matched points whose assigned matches are semantically inconsistent.
 
 \begin{figure}[h]
     \centering
@@ -520,12 +476,150 @@ We further visualize sampled correspondences established by our method in \autor
     \label{fig:semantic_correspondence_pruning}
 \end{figure}
 
+
+
+\section{3D--2D Correspondence Evaluation on KeypointNet}
+\label{sup:3d2d_eval}
+
+We further evaluate the quality of the 3D--2D correspondences
+generated by SemGeo-Gen using KeypointNet~\cite{you2020}.
+Since our 3D--3D correspondences are approximate, geometric
+inaccuracies may introduce projection errors or visibility
+inconsistencies when transferred to image space.
+To assess their impact, we project the generated correspondences
+onto rendered target views and evaluate their accuracy against
+human-annotated semantic keypoints, accounting for visibility
+and occlusion.
+
+\paragraph{Evaluation protocol.}
+We follow the 3D--3D evaluation protocol described in the main
+paper, using the same 16 categories, model subsets, pair filtering,
+and generated correspondences. Each target model is rendered
+from four random viewpoints, with azimuth sampled from
+$[0^\circ,360^\circ)$ and elevation from $[-10^\circ,70^\circ]$.
+
+We evaluate only ground-truth keypoints visible in the rendered
+target image, since occluded keypoints cannot provide valid
+image-space annotations. As in our data-generation pipeline,
+predicted correspondences are retained only if their target
+points are also visible. Visibility is determined by comparing
+each point's depth with the rendered depth map using a tolerance
+of $0.02$ to account for small rasterization and surface
+discrepancies.
+
+For each visible ground-truth keypoint, we select the
+correspondence with the nearest source point among those
+with visible targets, provided its distance is within
+$0.05$ times the target 3D bounding-box diagonal.
+Keypoints without such a correspondence are considered
+not found.
+
+\paragraph{Evaluation metrics.}
+We report PCK on found keypoints. A prediction is considered
+correct at threshold $\alpha$ if
+\begin{equation}
+    \|\mathbf{u}_{pred}-\mathbf{u}_{gt}\|_2
+    < \alpha d_{2D},
+\end{equation}
+where $\mathbf{u}_{pred}$ and $\mathbf{u}_{gt}$ denote
+the projected predicted and ground-truth target locations,
+and $d_{2D}$ is the projected 2D bounding-box diagonal
+of the target object.
+
+We additionally report coverage, defined as the fraction
+of visible ground-truth keypoints for which a valid
+correspondence is found (similar to the 3D-3D experiment). This measures coverage of the
+sparse KeypointNet annotations rather than the fraction
+of dense correspondences retained by our data-generation
+pipeline.
+
+\paragraph{Results.}
+As shown in \autoref{tab:kpn_2d}, SemGeo-Gen achieves
+94.2\% PCK@0.10 across 16 categories, compared to
+92.7\% in the original 3D--3D evaluation over all
+found keypoints. The higher overall 2D accuracy reflects
+the restriction to visible keypoints, as required for
+valid 3D--2D correspondences. When evaluated on the
+same retained keypoints, 3D PCK reaches 95.1\%, compared
+to 94.2\% in 2D. The slight decrease may arise from
+geometric inaccuracies in approximate correspondences,
+which can affect their projected locations and normalized
+image-space errors. Nevertheless, the small gap indicates
+that correspondence accuracy is largely preserved after
+projection into image space.
+
+The average coverage is 45.3\% of visible ground-truth
+keypoints, reflecting the combined effect of correspondence
+availability and visibility filtering. Results remain
+stable across independently sampled viewpoint sets,
+varying by at most $\pm0.1$ percentage points.
+
+\begin{table*}[t]
+    \centering
+    \captionsetup{justification=centering}
+    \small
+    \setlength{\tabcolsep}{5pt}
+    \renewcommand{\arraystretch}{0.95}
+
+    \caption{
+        \textbf{3D--2D correspondence evaluation on KeypointNet.}
+        PCK on found correspondences with visible ground-truth
+        keypoints and visible predicted target points.
+        Coverage denotes the fraction of visible ground-truth
+        keypoints for which a valid correspondence is found.
+        The last column reports the original 3D PCK@0.10
+        over all found keypoints.
+    }
+    \label{tab:kpn_2d}
+    \vspace{4pt}
+
+    \begin{tabular}{lccccc|c}
+        \toprule
+        \textbf{Category} &
+        \textbf{PCK@.05} &
+        \textbf{PCK@.10} &
+        \textbf{PCK@.15} &
+        \textbf{PCK@.20} &
+        \textbf{Coverage} &
+        \textbf{3D PCK@.10} \\
+        \midrule
+        Airplane   & 0.79 & 0.94 & 0.98 & 0.99 & 0.73 & 0.94 \\
+        Bathtub    & 0.81 & 0.95 & 0.99 & 1.00 & 0.26 & 0.88 \\
+        Bed        & 0.81 & 0.96 & 0.99 & 1.00 & 0.45 & 0.91 \\
+        Bottle     & 0.81 & 0.95 & 0.98 & 0.99 & 0.40 & 0.96 \\
+        Cap        & 0.83 & 0.97 & 1.00 & 1.00 & 0.30 & 0.97 \\
+        Car        & 0.76 & 0.95 & 0.98 & 1.00 & 0.88 & 0.95 \\
+        Chair      & 0.80 & 0.97 & 0.99 & 1.00 & 0.31 & 0.96 \\
+        Guitar     & 0.81 & 0.97 & 0.99 & 1.00 & 0.61 & 0.96 \\
+        Helmet     & 0.57 & 0.85 & 0.96 & 0.99 & 0.20 & 0.84 \\
+        Knife      & 0.79 & 0.92 & 0.96 & 0.98 & 0.32 & 0.93 \\
+        Laptop     & 0.93 & 1.00 & 1.00 & 1.00 & 0.55 & 0.99 \\
+        Motorcycle & 0.70 & 0.90 & 0.97 & 0.99 & 0.74 & 0.93 \\
+        Mug        & 0.79 & 0.97 & 0.99 & 1.00 & 0.59 & 0.96 \\
+        Skateboard & 0.84 & 0.97 & 0.99 & 1.00 & 0.42 & 0.97 \\
+        Table      & 0.87 & 0.98 & 1.00 & 1.00 & 0.40 & 0.96 \\
+        Vessel     & 0.70 & 0.86 & 0.93 & 0.97 & 0.08 & 0.71 \\
+        \midrule
+        \textbf{Mean}
+        & \textbf{0.79} & \textbf{0.94}
+        & \textbf{0.98} & \textbf{0.99}
+        & \textbf{0.45} & \textbf{0.93} \\
+        \bottomrule
+    \end{tabular}
+\end{table*}
+
+
+
+
 \section{Detailed PCK Results by Semantic Label and KeypointNet Category}
 \label{Sup:per_label}
 
-We provide a detailed analysis of correspondence quality at the level of individual semantic keypoints. For each category, we evaluate up to 100 objects and all induced source-target pairs, corresponding to up to $\binom{100}{2}$ object pairs per category, across 16 categories and 79,200 pairs overall. We report PCK results per annotated semantic label, following the KeypointNet \cite{you2020} evaluation protocol.
+We provide a detailed analysis of correspondence quality at the level of individual semantic keypoints. For each category, we evaluate one subset of up to 100 objects (38 for Cap and 90 for Helmet) and all
+induced source-target pairs, corresponding to up to $\binom{100}{2}$ object pairs per category, across
+15 categories and 69{,}058 pairs overall, of which 46{,}849 pass the pair-level filter.
 
-These results are computed using our full pipeline, including correspondence-level semantic filtering with $\tau_{\mathrm{sem}}=0.85$ and pair-level filtering. For each semantic label, we report results as $\text{correct}/\text{total}$, where \emph{total} denotes the number of ground-truth keypoints that remain evaluable after filtering. A keypoint is considered evaluable if at least one predicted correspondence remains within $0.05$ of the object bounding-box diagonal from the ground-truth location. We report raw $\text{correct}/\text{total}$ counts rather than percentages to make the amount of retained evaluable annotations explicit for each semantic label.
+
+These results are computed using our full pipeline, including correspondence-level semantic filtering with $\tau_{\mathrm{sem}}=0.575$ and pair-level filtering. For each semantic label, we report results as $\text{correct}/\text{total}$, where \emph{total} denotes the number of ground-truth keypoints that remain evaluable after filtering. A keypoint is considered evaluable if at least one predicted correspondence remains within $0.05$ of the object bounding-box diagonal from the ground-truth location. We report raw $\text{correct}/\text{total}$ counts rather than percentages to make the amount of retained evaluable annotations explicit for each semantic label.
 
 KeypointNet annotations are sparse and typically located on salient corners or extreme parts, while our method produces dense correspondences across the object surface. Therefore, these per-label results should be interpreted as a conservative estimate of correspondence quality around the sparse annotated locations.
 
@@ -535,75 +629,6 @@ Tables~\ref{tab:pck_airplane}-\ref{tab:pck_vessel}.
 
 \subimport{./sup_mat/tables}{labels_airplane}
 
-%shira added
 \clearpage
 \subimport{./sup_mat/tables}{semantic_thresh_values_tables}
 
-% \clearpage
-% \subimport{./sup_mat/figures}{keypointnet_fig}
-% \subimport{./sup_mat/figures}{failure_cases_keypointnet}
-
-\begin{comment}
-        \item[\autoref{Sup:MoreExpRes}.] Additional experiments and results:
-            \begin{enumerate}[label=\arabic*)] 
-                \item Comparisons on $N=3$ cases (\autoref{fig:triplets})
-                \item Camera overlap expressiveness  (\autoref{Fig:5cam}).
-                \item Fast Moving Videos from  StabStitch-D dataset ~\cite{Nie:ECCV:2024:stabstitch} (\autoref{fig:fm})
-            \end{enumerate}
-         \refstepcounter{enumi}   
-        \item [\autoref{Sup:ArchN=3}.] An example MVS architecture Plot for an $N>2$ case (\autoref{Fig:method})
-        \refstepcounter{enumi}
-        \item[\autoref{sec:geovar}.] The Geometric Variance metric
-        \refstepcounter{enumi}
-        \item[\autoref{sec:arch}.] Additional architecture details: AE and the Alignment Network
-\setcounter{figure}{4}
-\setcounter{table}{3}      % 4 + 1 → 5
-\clearpage
-
-\section{Additional Experiments and Results}\label{Sup:MoreExpRes}
-\subimport{./supp_mat/}{experiments_and_results}
-
-\clearpage
-
-
-\section{An Example for the MVS Architecture for an $N>2$ Case}\label{Sup:ArchN=3}
-In the paper, due to page
-limit, we show a visualization of 
-our MVS architecture
-for the case of $N=2$. 
-The case of $N>2$ is handled
-similarly: in the prepossessing the DINO, PCA and AE steps are still done per cameras,
-while the ORT extraction
-is still done in a pairwise
-fashion. 
-Stage 1, based on the geometric loss, utilized 
-all the relevant pairs. 
-Similarly, this is also the case in Stage 2, where,
-for every $t$, 
-there are now 3 pairs 
-for each time step $t$,
-along with three temporal pairs (for $t$ and $t+1$
-in each of the $N=3$ cameras).
-The architecture,
-by design, naturally generalizes
-to the case of even 
-higher $N$ values. 
-
-\subimport{./supp_mat/}{fig_method} 
-
-\clearpage
-
-\section{The Geometric Variance metric}
-\label{sec:geovar}
-\subimport{./supp_mat/}{geometric_variance} 
-\clearpage
-
-\subimport{./supp_mat/}{arch_details} 
-
-
-\clearpage
-\bibliography{refs}
-%\bibliographystyle{abbrvnat}
-\bibliographystyle{unsrt}
-\end{comment}
-% \end{document}
